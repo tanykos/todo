@@ -1,0 +1,12 @@
+@import './reset.scss';
+@import 'variables';
+@import 'fonts';
+
+:root {
+  background-color: $background-color;
+  color: $text-primary;
+} 
+
+body {
+  font-family: $font-main;
+}

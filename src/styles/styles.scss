@@ -3,10 +3,7 @@
 @import 'fonts';
 
 :root {
-  background-color: $background-color;
-  color: $text-primary;
+  background-color: var(--background-color);
+  color: var(--text-primary);
+  font-family: var(--font-main);
 } 
-
-body {
-  font-family: $font-main;
-}

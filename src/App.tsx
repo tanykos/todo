@@ -1,7 +1,9 @@
-import MainLayout from "./components/MainLayout";
+import MainLayout from "./layouts";
 
 export default function App() {
   return (
-    <MainLayout />
+    <MainLayout>
+      <p>List</p>
+    </MainLayout>
   );
 }

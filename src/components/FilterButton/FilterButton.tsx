@@ -12,7 +12,7 @@ export const FilterButton = ({ label, isActive, onClick }: FilterButtonProps) =>
       variant="outlined"
       color="secondary"
       size="small"
-      sx={{ textTransform: 'none', borderColor: isActive ? 'var(--text-secondary)' : 'transparent' }}
+      sx={{ textTransform: 'capitalize', borderColor: isActive ? 'var(--text-secondary)' : 'transparent' }}
       onClick={onClick}
     >
       {label}

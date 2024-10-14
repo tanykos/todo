@@ -1,12 +1,14 @@
-import { StyledListWrapper, StyledPaper, StyledParagraph } from './MainComponent.styled';
+import { StyledPaper } from './MainComponent.styled';
 import TaskList from '../TaskList';
 import TaskForm from '../TaskForm';
 import Actions from '../Actions';
-import { useState } from 'react';
-import { Task } from '../../types';
+import { useEffect, useState } from 'react';
+import { Task, TaskFilter } from '../../types';
 
 export const MainComponent = () => {
   const [tasks, setTasks] = useState<Task[]>([]);
+  const [tasksFiltered, setTasksFiltered] = useState<Task[]>([]);
+  const [activeFilter, setActiveFilter] = useState<TaskFilter>(TaskFilter.All);
   
   const addTask = (taskText: string) => {
     const newTask = {
@@ -19,12 +21,22 @@ export const MainComponent = () => {
   };
 
   const toggleTaskCompletion = (id: number) => {
-    setTasks(
-      tasks.map((task) =>
+    const tasksUpdated = tasks.map((task) =>
         task.id === id ? { ...task, completed: !task.completed } : task
       )
-    );
+
+    setTasks(tasksUpdated);
   };
+
+  useEffect(() => {
+    const filteredTasks = tasks.filter((task) => {
+      if (activeFilter === TaskFilter.Active) return !task.completed;
+      if (activeFilter === TaskFilter.Completed) return task.completed;
+      return true;
+    });
+
+    setTasksFiltered(filteredTasks);
+  }, [tasks, activeFilter])
 
   return (
     <StyledPaper 
@@ -39,16 +51,9 @@ export const MainComponent = () => {
     >
       <TaskForm addTask={addTask}/>
 
-      <StyledListWrapper>
-        {!tasks.length ? 
-          <StyledParagraph>The task list is empty.</StyledParagraph>
-          :
-          <TaskList tasks={tasks} toggleTaskCompletion={toggleTaskCompletion} />
-        }
-      </StyledListWrapper>
-      
+      <TaskList tasks={tasksFiltered} toggleTaskCompletion={toggleTaskCompletion} activeFilter={activeFilter} />      
 
-      <Actions />
+      <Actions activeFilter={activeFilter} setActiveFilter={setActiveFilter} />
     </StyledPaper>
   )
 }

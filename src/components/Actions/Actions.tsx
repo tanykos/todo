@@ -1,16 +1,17 @@
 import { Box, Button } from "@mui/material";
 import { StyledWrapper } from "./Actions.styled";
-import { useState } from "react";
+import { Dispatch } from "react";
 import FilterButton from "../FilterButton";
-import { FILTERS } from "../../constatnts";
+import { TaskFilter } from "../../types";
+import { filters } from "../../constatnts";
 
-const filters = [FILTERS.ALL, FILTERS.ACTIVE, FILTERS.COMPLETED];
+interface ActionsProps {
+  activeFilter: TaskFilter,
+  setActiveFilter: Dispatch<React.SetStateAction<TaskFilter>>;
+};
 
-export const Actions = () => {
-  const [activeFilter, setActiveFilter] = useState(FILTERS.ALL);
-
-
-  const handleFilterClick = (filter: string) => {
+export const Actions = ({ activeFilter, setActiveFilter }: ActionsProps) => {
+  const handleFilterClick = (filter: TaskFilter) => {
     setActiveFilter(filter);
   };
   

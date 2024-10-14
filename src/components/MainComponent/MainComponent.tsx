@@ -9,6 +9,7 @@ export const MainComponent = () => {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [tasksFiltered, setTasksFiltered] = useState<Task[]>([]);
   const [activeFilter, setActiveFilter] = useState<TaskFilter>(TaskFilter.All);
+  const [completedCount, setCompletedCount] = useState(0);
   
   const addTask = (taskText: string) => {
     const newTask = {
@@ -22,9 +23,15 @@ export const MainComponent = () => {
 
   const toggleTaskCompletion = (id: number) => {
     const tasksUpdated = tasks.map((task) =>
-        task.id === id ? { ...task, completed: !task.completed } : task
-      )
+                          task.id === id ? { ...task, completed: !task.completed } : task
+                        );
 
+    const completedTasksCount = tasksUpdated.reduce(
+      (count, task) => (task.completed ? count + 1 : count),
+      0
+    ); 
+
+    setCompletedCount(completedTasksCount);                   
     setTasks(tasksUpdated);
   };
 
@@ -51,9 +58,17 @@ export const MainComponent = () => {
     >
       <TaskForm addTask={addTask}/>
 
-      <TaskList tasks={tasksFiltered} toggleTaskCompletion={toggleTaskCompletion} activeFilter={activeFilter} />      
+      <TaskList 
+        tasks={tasksFiltered} 
+        toggleTaskCompletion={toggleTaskCompletion} 
+        activeFilter={activeFilter} 
+      />      
 
-      <Actions activeFilter={activeFilter} setActiveFilter={setActiveFilter} />
+      <Actions 
+        activeFilter={activeFilter} 
+        setActiveFilter={setActiveFilter} 
+        completedCount={completedCount} 
+      />
     </StyledPaper>
   )
 }

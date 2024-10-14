@@ -13,3 +13,9 @@ export const StyledWrapper = styled(Box)`
   font-size: 0.65rem;
   border-top: 1px solid var(--border-color);
 `;
+
+export const StyledSpan = styled('span')`
+  display: inline-block;
+  min-width: 3ch;
+  text-align: end;
+`;

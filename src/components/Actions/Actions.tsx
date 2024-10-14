@@ -1,24 +1,30 @@
 import { Box, Button } from "@mui/material";
-import { StyledWrapper } from "./Actions.styled";
+import { StyledSpan, StyledWrapper } from "./Actions.styled";
 import { Dispatch } from "react";
 import FilterButton from "../FilterButton";
 import { TaskFilter } from "../../types";
-import { filters } from "../../constatnts";
+import { filters, maxCompleted } from "../../constatnts";
 
 interface ActionsProps {
   activeFilter: TaskFilter,
   setActiveFilter: Dispatch<React.SetStateAction<TaskFilter>>;
+  completedCount: number;
 };
 
-export const Actions = ({ activeFilter, setActiveFilter }: ActionsProps) => {
+export const Actions = ({ activeFilter, setActiveFilter, completedCount }: ActionsProps) => {
   const handleFilterClick = (filter: TaskFilter) => {
     setActiveFilter(filter);
   };
-  
+
+  const getCounter = () => {
+    if (completedCount > maxCompleted) return `${maxCompleted}+`;
+    return completedCount;
+  }
+
   return (
     <StyledWrapper>
       <Box>
-        0 items left
+        <StyledSpan>{getCounter()}</StyledSpan> items left
       </Box>
       <Box sx={{ display: 'flex', gap: '0.5rem'}} >
         {filters.map((filter) => (

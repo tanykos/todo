@@ -27,6 +27,22 @@ const themeOptions: ThemeOptions = {
         },
       },
     },
+    MuiCheckbox: {
+      styleOverrides: {
+        root: {
+          color: '#292b321a',
+        },
+      },
+    },
+    MuiInputBase: {
+      styleOverrides: {
+        input: {
+          '::placeholder': {
+            fontStyle: 'italic',
+          },
+        },
+      },
+    },
   },
 };
 

@@ -1,6 +1,8 @@
 import { Checkbox, List, ListItemButton, ListItemIcon, ListItemText } from "@mui/material";
 import { Task, TaskFilter } from "../../types";
 import { StyledListItem, StyledListWrapper, StyledParagraph } from "./TaskList.styled";
+import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 
 interface TaskListProps {
   tasks: Task[];
@@ -37,12 +39,21 @@ export const TaskList = ({ tasks, toggleTaskCompletion, activeFilter }: TaskList
               <ListItemButton role={undefined} onClick={() => toggleTaskCompletion(task.id)} dense>
                 <ListItemIcon>
                   <Checkbox
-                    edge="start"
+                    edge="end"
                     checked={task.completed}
                     disableRipple
+                    icon={<RadioButtonUncheckedIcon />}
+                    checkedIcon={<CheckCircleOutlineIcon />}
                   />
                 </ListItemIcon>
-                <ListItemText primary={`${task.text}`} sx={{ wordWrap: 'break-word' }} />
+                <ListItemText 
+                  primary={`${task.text}`} 
+                  sx={{ 
+                    wordWrap: 'break-word',
+                    textDecoration: task.completed ? 'line-through' : 'none',
+                    color: task.completed ? `var(--text-disabled)` : 'inherit'
+                  }} 
+                />
               </ListItemButton>
             </StyledListItem>
             ))}

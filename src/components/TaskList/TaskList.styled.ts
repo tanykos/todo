@@ -9,7 +9,7 @@ export const StyledListItem = styled(ListItem)`
 
 export const StyledListWrapper = styled(Box)`
   margin-bottom: var(--height-actions);
-  overflow-Y: auto;
+  overflow-y: auto;
 `;
 
 export const StyledParagraph = styled('p')`

@@ -35,6 +35,11 @@ export const MainComponent = () => {
     setTasks(tasksUpdated);
   };
 
+  const clearCompletedTasks = () => {
+    setTasks(tasks.filter((task) => !task.completed));
+    setCompletedCount(0);
+  };
+
   useEffect(() => {
     const filteredTasks = tasks.filter((task) => {
       if (activeFilter === TaskFilter.Active) return !task.completed;
@@ -68,6 +73,7 @@ export const MainComponent = () => {
         activeFilter={activeFilter} 
         setActiveFilter={setActiveFilter} 
         completedCount={completedCount} 
+        clearCompletedTasks={clearCompletedTasks}
       />
     </StyledPaper>
   )

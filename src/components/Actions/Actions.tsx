@@ -3,15 +3,16 @@ import { StyledSpan, StyledWrapper } from "./Actions.styled";
 import { Dispatch } from "react";
 import FilterButton from "../FilterButton";
 import { TaskFilter } from "../../types";
-import { filters, maxCompleted } from "../../constatnts";
+import { filters, maxCompleted } from "../../constants";
 
 interface ActionsProps {
   activeFilter: TaskFilter,
   setActiveFilter: Dispatch<React.SetStateAction<TaskFilter>>;
   completedCount: number;
+  clearCompletedTasks: () => void;
 };
 
-export const Actions = ({ activeFilter, setActiveFilter, completedCount }: ActionsProps) => {
+export const Actions = ({ activeFilter, setActiveFilter, completedCount, clearCompletedTasks }: ActionsProps) => {
   const handleFilterClick = (filter: TaskFilter) => {
     setActiveFilter(filter);
   };
@@ -38,6 +39,8 @@ export const Actions = ({ activeFilter, setActiveFilter, completedCount }: Actio
       </Box>
       <Box>
         <Button 
+          onClick={clearCompletedTasks}
+          disabled={!completedCount}
           variant="text"
           color="secondary"
           size="small" 

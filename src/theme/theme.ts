@@ -22,6 +22,9 @@ const themeOptions: ThemeOptions = {
           fontSize: '0.65rem',
           textTransform: 'none',
         },
+        sizeSmall: {
+          minWidth: '40px',
+        },
       },
     },
   },

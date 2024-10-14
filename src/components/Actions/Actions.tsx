@@ -1,12 +1,14 @@
 import { Box, Button } from "@mui/material";
-import { StyledWrapper } from "./ActionsList.styled";
+import { StyledWrapper } from "./Actions.styled";
 import { useState } from "react";
 import FilterButton from "../FilterButton";
+import { FILTERS } from "../../constatnts";
 
-export const ActionsList = () => {
-  const [activeFilter, setActiveFilter] = useState('All');
+const filters = [FILTERS.ALL, FILTERS.ACTIVE, FILTERS.COMPLETED];
 
-  const filters = ['All', 'Active', 'Completed'];
+export const Actions = () => {
+  const [activeFilter, setActiveFilter] = useState(FILTERS.ALL);
+
 
   const handleFilterClick = (filter: string) => {
     setActiveFilter(filter);

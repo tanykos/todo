@@ -1,21 +1,8 @@
-import React from 'react';
-import { AppBar, Typography, Container } from '@mui/material';
-import styled from '@emotion/styled';
+import { ReactNode } from 'react';
+import { StyledAppBar, StyledContainer } from './MainLayout.styled';
+import { Typography } from '@mui/material';
 
-const StyledAppBar = styled(AppBar)({
-  boxShadow: 'none',
-  backgroundColor: 'transparent',
-  textAlign: 'center',
-  color: `var(--text-secondary)`,
-});
-
-const StyledContainer = styled(Container)({
-  display: 'flex',
-  justifyContent: 'center',
-  padding: '20px',
-});
-
-export const MainLayout = ({ children }: { children: React.ReactNode }) => {
+export const MainLayout = ({ children }: { children: ReactNode }) => {
   return (
     <>
       <StyledAppBar position="static" color='transparent'>

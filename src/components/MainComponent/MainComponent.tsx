@@ -9,7 +9,7 @@ export const MainComponent = () => {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [tasksFiltered, setTasksFiltered] = useState<Task[]>([]);
   const [activeFilter, setActiveFilter] = useState<TaskFilter>(TaskFilter.All);
-  const [completedCount, setCompletedCount] = useState(0);
+  const [activeCount, setActiveCount] = useState(0);
   
   const addTask = (taskText: string) => {
     const newTask = {
@@ -23,22 +23,19 @@ export const MainComponent = () => {
 
   const toggleTaskCompletion = (id: number) => {
     const tasksUpdated = tasks.map((task) =>
-                          task.id === id ? { ...task, completed: !task.completed } : task
-                        );
-
-    const completedTasksCount = tasksUpdated.reduce(
-      (count, task) => (task.completed ? count + 1 : count),
-      0
-    ); 
-
-    setCompletedCount(completedTasksCount);                   
+      task.id === id ? { ...task, completed: !task.completed } : task
+    );                   
     setTasks(tasksUpdated);
   };
 
   const clearCompletedTasks = () => {
     setTasks(tasks.filter((task) => !task.completed));
-    setCompletedCount(0);
   };
+
+  useEffect(() => {
+    const activeTasksCount = tasks.filter((task) => !task.completed).length;
+    setActiveCount(activeTasksCount);
+  }, [tasks]);
 
   useEffect(() => {
     const filteredTasks = tasks.filter((task) => {
@@ -72,7 +69,7 @@ export const MainComponent = () => {
       <Actions 
         activeFilter={activeFilter} 
         setActiveFilter={setActiveFilter} 
-        completedCount={completedCount} 
+        activeCount={activeCount} 
         clearCompletedTasks={clearCompletedTasks}
       />
     </StyledPaper>

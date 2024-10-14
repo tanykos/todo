@@ -8,18 +8,18 @@ import { filters, maxCompleted } from "../../constants";
 interface ActionsProps {
   activeFilter: TaskFilter,
   setActiveFilter: Dispatch<React.SetStateAction<TaskFilter>>;
-  completedCount: number;
+  activeCount: number;
   clearCompletedTasks: () => void;
 };
 
-export const Actions = ({ activeFilter, setActiveFilter, completedCount, clearCompletedTasks }: ActionsProps) => {
+export const Actions = ({ activeFilter, setActiveFilter, activeCount, clearCompletedTasks }: ActionsProps) => {
   const handleFilterClick = (filter: TaskFilter) => {
     setActiveFilter(filter);
   };
 
   const getCounter = () => {
-    if (completedCount > maxCompleted) return `${maxCompleted}+`;
-    return completedCount;
+    if (activeCount > maxCompleted) return `${maxCompleted}+`;
+    return activeCount;
   }
 
   return (
@@ -40,7 +40,7 @@ export const Actions = ({ activeFilter, setActiveFilter, completedCount, clearCo
       <Box>
         <Button 
           onClick={clearCompletedTasks}
-          disabled={!completedCount}
+          disabled={!activeCount}
           variant="text"
           color="secondary"
           size="small" 

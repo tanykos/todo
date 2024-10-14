@@ -23,7 +23,14 @@ export const Actions = ({ activeFilter, setActiveFilter, activeCount, clearCompl
   }
 
   return (
-    <StyledWrapper>
+    <StyledWrapper
+      sx={{
+        flexDirection: {
+          xs: 'column',
+          sm: 'row',
+        },
+      }}
+    >
       <Box>
         <StyledSpan>{getCounter()}</StyledSpan> items left
       </Box>

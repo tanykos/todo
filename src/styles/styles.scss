@@ -8,3 +8,9 @@
   font-size: 24px;
   letter-spacing: .05rem;
 } 
+
+@media (max-width: 500px) {
+  :root {
+    font-size: 16px;
+  }
+}

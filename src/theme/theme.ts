@@ -15,6 +15,15 @@ const themeOptions: ThemeOptions = {
       secondary: '#9e7b84',
     },
   },
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 700,
+      md: 960,
+      lg: 1280,
+      xl: 1920,
+    },
+  },
   components: {
     MuiButton: {
       styleOverrides: {

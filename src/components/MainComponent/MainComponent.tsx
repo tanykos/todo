@@ -1,4 +1,4 @@
-import { StyledPaper } from './MainComponent.styled';
+import { StyledPaper, StyledUnderPaper } from './MainComponent.styled';
 import TaskList from '../TaskList';
 import TaskForm from '../TaskForm';
 import Actions from '../Actions';
@@ -58,6 +58,8 @@ export const MainComponent = () => {
         },
       }}
     >
+      <StyledUnderPaper square></StyledUnderPaper>
+      <StyledUnderPaper square></StyledUnderPaper>
       <TaskForm addTask={addTask}/>
 
       <TaskList 

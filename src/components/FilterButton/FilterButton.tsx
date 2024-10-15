@@ -14,6 +14,7 @@ export const FilterButton = ({ label, isActive, onClick }: FilterButtonProps) =>
       size="small"
       sx={{ textTransform: 'capitalize', borderColor: isActive ? 'var(--text-secondary)' : 'transparent' }}
       onClick={onClick}
+      data-testid={label}
     >
       {label}
     </Button>

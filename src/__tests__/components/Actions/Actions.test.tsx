@@ -1,34 +1,40 @@
-import { render, screen, fireEvent } from "@testing-library/react";
-import Actions from "../../../components/Actions";
-import { TaskFilter } from "../../../types";
+import { render, screen, fireEvent } from '@testing-library/react';
+import Actions from '../../../components/Actions';
+import { TaskFilter } from '../../../types';
 
-describe("Actions component", () => {
+describe('Actions component', () => {
   const mockSetActiveFilter = jest.fn();
   const mockClearCompletedTasks = jest.fn();
 
   const defaultProps = {
-    activeFilter: "All" as TaskFilter,
+    activeFilter: 'all' as TaskFilter,
     setActiveFilter: mockSetActiveFilter,
-    activeCount: 5,
+    activeCount: 100,
     completedCount: 2,
     clearCompletedTasks: mockClearCompletedTasks,
   };
 
-  test("should call setActiveFilter on filter button click", () => {
+  beforeEach(() => {
     render(<Actions {...defaultProps} />);
-    
-    const filterButton = screen.getByText("active");
-    fireEvent.click(filterButton);
-    
-    expect(mockSetActiveFilter).toHaveBeenCalledWith("active");
   });
 
-  test("should call clearCompletedTasks on 'Clear completed' button click", () => {
-    render(<Actions {...defaultProps} />);
+  test('should call setActiveFilter on filter button click', () => {    
+    const filterButton = screen.getByTestId('active');
+    fireEvent.click(filterButton);
     
-    const clearButton = screen.getByText("Clear completed");
+    expect(mockSetActiveFilter).toHaveBeenCalledWith('active');
+  });
+
+  test('should call clearCompletedTasks on "Clear completed" button click', () => {    
+    const clearButton = screen.getByText('Clear completed');
     fireEvent.click(clearButton);
 
     expect(mockClearCompletedTasks).toHaveBeenCalled();
+  });
+
+  test('should set "99+" if activeCount > 99', () => {
+    const counter = screen.getByTestId('task counter');
+
+    expect(counter).toHaveTextContent('99+');
   });
 });

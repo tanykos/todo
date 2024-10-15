@@ -33,7 +33,7 @@ export const Actions = ({ activeFilter, setActiveFilter, activeCount, completedC
       }}
     >
       <Box>
-        <StyledSpan>{getCounter()}</StyledSpan> items left
+        <StyledSpan data-testid='task counter'>{getCounter()}</StyledSpan> items left
       </Box>
       <Box sx={{ display: 'flex', gap: '0.5rem'}} >
         {filters.map((filter) => (

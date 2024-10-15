@@ -10,6 +10,7 @@ export const MainComponent = () => {
   const [tasksFiltered, setTasksFiltered] = useState<Task[]>([]);
   const [activeFilter, setActiveFilter] = useState<TaskFilter>(TaskFilter.All);
   const [activeCount, setActiveCount] = useState(0);
+  const [completedCount, setCompletedCount] = useState(0);
   
   const addTask = (taskText: string) => {
     const newTask = {
@@ -24,11 +25,19 @@ export const MainComponent = () => {
   const toggleTaskCompletion = (id: number) => {
     const tasksUpdated = tasks.map((task) =>
       task.id === id ? { ...task, completed: !task.completed } : task
-    );                   
+    );  
+    
+    const completedTasksCount = tasksUpdated.reduce(
+      (count, task) => (task.completed ? count + 1 : count),
+      0
+    ); 
+
+    setCompletedCount(completedTasksCount);
     setTasks(tasksUpdated);
   };
 
   const clearCompletedTasks = () => {
+    setCompletedCount(0);
     setTasks(tasks.filter((task) => !task.completed));
   };
 
@@ -72,6 +81,7 @@ export const MainComponent = () => {
         activeFilter={activeFilter} 
         setActiveFilter={setActiveFilter} 
         activeCount={activeCount} 
+        completedCount={completedCount}
         clearCompletedTasks={clearCompletedTasks}
       />
     </StyledPaper>

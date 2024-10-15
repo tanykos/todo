@@ -9,10 +9,11 @@ interface ActionsProps {
   activeFilter: TaskFilter,
   setActiveFilter: Dispatch<React.SetStateAction<TaskFilter>>;
   activeCount: number;
+  completedCount: number;
   clearCompletedTasks: () => void;
 };
 
-export const Actions = ({ activeFilter, setActiveFilter, activeCount, clearCompletedTasks }: ActionsProps) => {
+export const Actions = ({ activeFilter, setActiveFilter, activeCount, completedCount, clearCompletedTasks }: ActionsProps) => {
   const handleFilterClick = (filter: TaskFilter) => {
     setActiveFilter(filter);
   };
@@ -47,7 +48,7 @@ export const Actions = ({ activeFilter, setActiveFilter, activeCount, clearCompl
       <Box>
         <Button 
           onClick={clearCompletedTasks}
-          disabled={!activeCount}
+          disabled={!completedCount}
           variant="text"
           color="secondary"
           size="small" 

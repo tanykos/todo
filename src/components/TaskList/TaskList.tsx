@@ -36,7 +36,7 @@ export const TaskList = ({ tasks, toggleTaskCompletion, activeFilter }: TaskList
           <List sx={{ width: '100%' }}>
             {tasks.map((task) => (
               <StyledListItem key={task.id} disablePadding>
-              <ListItemButton role={undefined} onClick={() => toggleTaskCompletion(task.id)} dense>
+              <ListItemButton role={undefined} onClick={() => toggleTaskCompletion(task.id)} dense data-testid='list item'>
                 <ListItemIcon>
                   <Checkbox
                     edge="end"
@@ -44,6 +44,7 @@ export const TaskList = ({ tasks, toggleTaskCompletion, activeFilter }: TaskList
                     disableRipple
                     icon={<RadioButtonUncheckedIcon />}
                     checkedIcon={<CheckCircleOutlineIcon />}
+                    data-testid='task checkbox'
                   />
                 </ListItemIcon>
                 <ListItemText 

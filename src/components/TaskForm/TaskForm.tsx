@@ -32,7 +32,7 @@ export const TaskForm = ({ addTask }: TaskFormProps) => {
           onChange={handleInputChange}
           sx={{ flex: 1 }}
           placeholder="What needs to be done?"
-          inputProps={{ 'aria-label': 'input task' }}
+          inputProps={{ 'aria-label': 'input task', 'data-testid': 'add task input' }}
         />
         <IconButton 
           type="submit"
@@ -40,6 +40,7 @@ export const TaskForm = ({ addTask }: TaskFormProps) => {
           color="primary"
           sx={{ p: '6px' }} 
           aria-label="add task"
+          data-testid='add task button'
         >
           <AddTaskIcon />
         </IconButton>

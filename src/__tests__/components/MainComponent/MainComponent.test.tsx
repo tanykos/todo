@@ -35,4 +35,20 @@ describe('MainComponent', () => {
     const inputCheck = checkbox.querySelector('input');
     expect(inputCheck).toBeChecked();
   });
+
+  test('clearCompletedTasks removes completed tasks', () => {  
+    fireEvent.change(input, { target: { value: 'Task 1' } });
+    fireEvent.click(button);
+    fireEvent.change(input, { target: { value: 'Task 2' } });
+    fireEvent.click(button);
+ 
+    const taskItem1 = screen.getByText('Task 1');
+    fireEvent.click(taskItem1);
+  
+    const clearButton = screen.getByText('Clear completed');
+    fireEvent.click(clearButton);
+  
+    expect(screen.queryByText('Task 1')).not.toBeInTheDocument();
+    expect(screen.getByText('Task 2')).toBeInTheDocument();
+  });
 });
